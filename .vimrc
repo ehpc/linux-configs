@@ -11,6 +11,12 @@ Plugin 'tpope/vim-vinegar'
 Plugin 'bling/vim-airline'
 Plugin 'rking/ag.vim'
 Plugin 'mbbill/undotree'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'scrooloose/syntastic'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-session'
+Plugin 'wikitopian/hardmode'
+Plugin 'Valloric/YouCompleteMe'
 call vundle#end()
 filetype plugin indent on
 " :PluginList       - lists configured plugins
@@ -24,8 +30,12 @@ filetype plugin indent on
 " Custom configuration
 set encoding=utf-8
 set ruler laststatus=2 number title hlsearch cc=81
+set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
 set background=dark
 colorscheme jelleybeans
+set list
+set listchars=tab:▸\ ,eol:¬
+
 syntax on
 nnoremap <F1> :NERDTreeToggle<CR>
 let g:airline#extensions#tabline#enabled = 1
@@ -48,4 +58,22 @@ endif
 set undodir=~/.vim/undo
 set undofile
 nnoremap <F2> :UndotreeToggle<cr>
+
+" Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
+" Sessions
+let g:session_autoload = "no"
+let g:session_autosave = "yes"
+let g:session_autosave_to = "default"
+
+" Hardmode
+autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
+nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
 
