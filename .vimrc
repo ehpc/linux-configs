@@ -30,12 +30,14 @@ filetype plugin indent on
 " Custom configuration
 set encoding=utf-8
 set ruler laststatus=2 number title hlsearch cc=81
-set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4
+set tabstop=4 softtabstop=0 noexpandtab shiftwidth=4 incsearch
 set background=dark
-colorscheme jelleybeans
+colorscheme molokai
 set list
 set listchars=tab:▸\ ,eol:¬
+nnoremap <silent> <CR> :nohlsearch<CR><CR>
 
+" Plugins
 syntax on
 nnoremap <F1> :NERDTreeToggle<CR>
 let g:airline#extensions#tabline#enabled = 1
