@@ -15,8 +15,11 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/syntastic'
 Plugin 'xolox/vim-misc'
 Plugin 'xolox/vim-session'
-Plugin 'wikitopian/hardmode'
+"Plugin 'wikitopian/hardmode'
 Plugin 'Valloric/YouCompleteMe'
+"Plugin 'MattesGroeger/vim-bookmarks'
+Plugin 'tpope/vim-repeat'
+Plugin 'dahu/vim-fanfingtastic'
 call vundle#end()
 filetype plugin indent on
 " :PluginList       - lists configured plugins
@@ -36,12 +39,30 @@ colorscheme molokai
 set list
 set listchars=tab:▸\ ,eol:¬
 nnoremap <silent> <CR> :nohlsearch<CR><CR>
+set mouse=a
+set ignorecase
+set smartcase
+set keymap=russian-jcukenwin
+highlight lCursor guifg=NONE guibg=Cyan
+set iminsert=0
+set imsearch=0
+
+" Bookmarking
+let g:bookmark_manage_per_buffer = 1
+
+" Spelling
+nmap <silent> <leader>s :set spell!<CR>
+"set spell
+set spelllang=ru,en
 
 " Plugins
 syntax on
-nnoremap <F1> :NERDTreeToggle<CR>
+nnoremap <F5> :NERDTreeToggle<CR>
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+let g:ctrlp_working_path_mode = 'r'
+nnoremap <F1> :CtrlPBuffer<CR>
+nnoremap <F2> :CtrlPMixed<CR>
 
 " The Silver Searcher
 if executable('ag')
@@ -59,7 +80,7 @@ if !isdirectory($HOME."/.vim/undo")
 endif
 set undodir=~/.vim/undo
 set undofile
-nnoremap <F2> :UndotreeToggle<cr>
+nnoremap <F6> :UndotreeToggle<cr>
 
 " Syntastic
 set statusline+=%#warningmsg#
@@ -78,4 +99,6 @@ let g:session_autosave_to = "default"
 " Hardmode
 autocmd VimEnter,BufNewFile,BufReadPost * silent! call HardMode()
 nnoremap <leader>h <Esc>:call ToggleHardMode()<CR>
+
+silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
